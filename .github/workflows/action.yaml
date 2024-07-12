@@ -1,4 +1,4 @@
-name: Deploy my Lambda Function
+uname: Deploy my Lambda Function
 
 # trigger on all push events to main branch
 on: 
@@ -45,7 +45,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: eu-north-1
       - name: Upload to S3
         run: aws s3 cp ${{ github.sha }}.zip s3://marazuelas01/${{ github.repository }}/${{ github.sha }}.zip
   deploy:
@@ -57,7 +57,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  
+          aws-region: eu-north-1  
       - name: Update function code
         run: |
             aws lambda update-function-code --function-name my-function --s3-bucket marazuelas01 --s3-key ${{ github.sha }}.zip --publish
