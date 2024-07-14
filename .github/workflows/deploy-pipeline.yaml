@@ -84,8 +84,8 @@ jobs:
         run: mkdir docs
       - name: convert md to html
         uses: docker://pandoc/core:2.9
-          with :
-            args: userguide.md -t html -o docs/index.html
+        with :
+          args: userguide.md -t html -o docs/index.html
       - name: deploy site
         uses: JamesIves/github-pages-deploy-action@4.1.4
           with:
